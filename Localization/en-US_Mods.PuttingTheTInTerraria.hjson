@@ -10,6 +10,11 @@ Items: {
 			It's snowing on Mt.Fuji
 			'''
 	}
+
+	Wheel: {
+		DisplayName: Wheel
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -17,3 +22,5 @@ NPCs: {
 	MassTHead.DisplayName: Mass T Head
 	MassTBody.DisplayName: Mass T Body
 }
+
+Projectiles.WheelProj.DisplayName: Wheel Proj

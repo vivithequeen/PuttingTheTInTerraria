@@ -12,6 +12,7 @@ namespace PuttingTheTInTerraria.Content.Items
 		// The Display Name and Tooltip of this item can be edited in the 'Localization/en-US_Mods.PuttingTheTInTerraria.hjson' file.
 		public override void SetDefaults()
 		{
+
 			Item.damage = 500000;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
