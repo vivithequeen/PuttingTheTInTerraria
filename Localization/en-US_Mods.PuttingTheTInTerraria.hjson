@@ -11,3 +11,9 @@ Items: {
 			'''
 	}
 }
+
+NPCs: {
+	MassTTail.DisplayName: Mass T Tail
+	MassTHead.DisplayName: Mass T Head
+	MassTBody.DisplayName: Mass T Body
+}
