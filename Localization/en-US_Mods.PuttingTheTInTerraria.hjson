@@ -2,7 +2,7 @@
 
 Items: {
 	debugsword: {
-		DisplayName: "debugsword"
+		DisplayName: debugsword
 		Tooltip:
 			'''
 			Template of an item
@@ -10,4 +10,10 @@ Items: {
 			It's snowing on Mt.Fuji
 			'''
 	}
+}
+
+NPCs: {
+	MassTTail.DisplayName: Mass T Tail
+	MassTHead.DisplayName: Mass T Head
+	MassTBody.DisplayName: Mass T Body
 }

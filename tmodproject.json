@@ -1,0 +1,7 @@
+{
+  "rootNamespace": "PuttingTheTInTerraria",
+  "fileMap": {
+    "Content/NPCs/Worm.cs": "PuttingTheTInTerraria.Content.NPCs",
+    "Content/NPCs/Bosses/MassT.cs": "PuttingTheTInTerraria.Content.NPCs.Bosses"
+  }
+}
