@@ -16,16 +16,16 @@ namespace PuttingTheTInTerraria.Content.Items
 		public override void SetDefaults() {
 			Item.useStyle = ItemUseStyleID.Shoot; // How you use the item (swinging, holding out, etc.)
 			Item.useAnimation = 45; // The item's use time in ticks (60 ticks == 1 second.)
-			Item.useTime = 45; // The item's use time in ticks (60 ticks == 1 second.)
+			Item.useTime = 20; // The item's use time in ticks (60 ticks == 1 second.)
 			Item.knockBack = 5.5f; // The knockback of your flail, this is dynamically adjusted in the projectile code.
 			Item.width = 32; // Hitbox width of the item.
 			Item.height = 32; // Hitbox height of the item.
-			Item.damage = 15; // The damage of your flail, this is dynamically adjusted in the projectile code.
+			Item.damage = 250; // The damage of your flail, this is dynamically adjusted in the projectile code.
 			Item.noUseGraphic = true; // This makes sure the item does not get shown when the player swings his hand
             Item.shoot = ModContent.ProjectileType<WheelProj>(); // The flail projectile
-			Item.shootSpeed = 12f; // The speed of the projectile measured in pixels per frame.
+			Item.shootSpeed = 30f; // The speed of the projectile measured in pixels per frame.
 			Item.UseSound = SoundID.Item1; // The sound that this item makes when used
-			Item.rare = ItemRarityID.Green; // The color of the name of your item
+			Item.rare = ItemRarityID.Orange; // The color of the name of your item
 			Item.value = Item.sellPrice(gold: 1, silver: 50); // Sells for 1 gold 50 silver
 			Item.DamageType = DamageClass.MeleeNoSpeed; // Deals melee damage
 			Item.channel = true;
