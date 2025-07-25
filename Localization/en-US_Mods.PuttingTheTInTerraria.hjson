@@ -2,7 +2,7 @@
 
 Items: {
 	debugsword: {
-		DisplayName: "debugsword"
+		DisplayName: debugsword
 		Tooltip:
 			'''
 			Template of an item
