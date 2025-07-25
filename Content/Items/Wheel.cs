@@ -22,7 +22,7 @@ namespace PuttingTheTInTerraria.Content.Items
 			Item.height = 32; // Hitbox height of the item.
 			Item.damage = 15; // The damage of your flail, this is dynamically adjusted in the projectile code.
 			Item.noUseGraphic = true; // This makes sure the item does not get shown when the player swings his hand
-            Item.shoot = ModContent.ProjectileType <>(); // The flail projectile
+            Item.shoot = ModContent.ProjectileType<WheelProj>(); // The flail projectile
 			Item.shootSpeed = 12f; // The speed of the projectile measured in pixels per frame.
 			Item.UseSound = SoundID.Item1; // The sound that this item makes when used
 			Item.rare = ItemRarityID.Green; // The color of the name of your item
