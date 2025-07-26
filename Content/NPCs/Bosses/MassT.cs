@@ -27,7 +27,7 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 		public override void SetDefaults()
 		{
 			// Head is 10 defense, body 20, tail 30.
-			NPC.CloneDefaults(NPCID.DiggerHead);
+			NPC.CloneDefaults(NPCID.WyvernHead);
 			NPC.aiStyle = -1;
 			NPC.lifeMax = 700000;
 			NPC.width = 120;
@@ -54,8 +54,8 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 		internal static void CommonWormInit(NPCs.Worm worm)
 		{
 			// These two properties handle the movement of the worm
-			worm.MoveSpeed = 25f;
-			worm.Acceleration = 2.045f;
+			worm.MoveSpeed = 45f;
+			worm.Acceleration = 4.045f;
 
 		}
 
@@ -106,7 +106,7 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 		}
 
 		public override void SetDefaults() {
-			NPC.CloneDefaults(NPCID.DiggerBody);
+			NPC.CloneDefaults(NPCID.WyvernBody);
 			NPC.aiStyle = -1;
 			NPC.width = 120;
 			NPC.height = 192;
@@ -127,7 +127,7 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 		}
 
 		public override void SetDefaults() {
-			NPC.CloneDefaults(NPCID.DiggerTail);
+			NPC.CloneDefaults(NPCID.WyvernTail);
 			NPC.aiStyle = -1;
 
 			NPC.width = 120;
