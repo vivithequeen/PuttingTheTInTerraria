@@ -57,7 +57,6 @@ Projectiles: {
 	WheelProj.DisplayName: Wheel Proj
 	Laser.DisplayName: Laser
 	Spike.DisplayName: Spike
-	ExampleSimpleMinion.DisplayName: Shuttle
 }
 
 Buffs: {
