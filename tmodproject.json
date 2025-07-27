@@ -4,6 +4,7 @@
     "Content/NPCs/Worm.cs": "PuttingTheTInTerraria.Content.NPCs",
     "Content/NPCs/Bosses/MassT.cs": "PuttingTheTInTerraria.Content.NPCs.Bosses",
     "Content/Items/Consumables/MassTSummonItem.cs": "PuttingTheTInTerraria.Content.Items.Consumables",
-    "Content/Items/Consumables/MassTTresureBag.cs": "PuttingTheTInTerraria.Content.Items.Consumables"
+    "Content/Items/Consumables/MassTTresureBag.cs": "PuttingTheTInTerraria.Content.Items.Consumables",
+    "Content/Projectiles/MassTSpike.cs": "PuttingTheTInTerraria.Content.Projectiles"
   }
 }

@@ -10,6 +10,7 @@ using Terraria.ModLoader;
 using PuttingTheTInTerraria.Content.Items.Consumables;
 using Terraria.GameContent.ItemDropRules;
 using System;
+using PuttingTheTInTerraria.Content.Projectiles;
 
 namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 {
@@ -40,7 +41,7 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 			// These lines are only needed in the main body part.
 			NPC.boss = true;
 			NPC.npcSlots = 10f;
-			NPC.damage = 9;
+			NPC.damage = 10;
 
 		}
 
@@ -101,7 +102,7 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 
 						float projSpeed = 10f;
 
-						int type = ProjectileID.RocketSkeleton;
+						int type = ModContent.ProjectileType<MassTSpike>();
 
 
 						int damage = NPC.damage;
@@ -148,7 +149,7 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 			NPC.width = 120;
 			NPC.height = 192;
 			// Extra body parts should use the same Banner value as the main ModNPC.
-			NPC.damage = 8;
+			NPC.damage = 10;
 		}
 		public override void AI()
 		{
@@ -175,7 +176,7 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 
 						float projSpeed = 10f;
 
-						int type = ProjectileID.RocketSkeleton;
+						int type = ModContent.ProjectileType<MassTSpike>();
 
 
 						int damage = NPC.damage;
