@@ -12,7 +12,17 @@ Items: {
 	}
 
 	Wheel: {
-		DisplayName: Wheel
+		DisplayName: Train Wheel
+		Tooltip: Deals 100x damage when thrown
+	}
+
+	Railgun: {
+		DisplayName: RAILgun
+		Tooltip: ""
+	}
+
+	Fumes: {
+		DisplayName: Fumes
 		Tooltip: ""
 	}
 }
@@ -23,4 +33,15 @@ NPCs: {
 	MassTBody.DisplayName: Mass T Body
 }
 
-Projectiles.WheelProj.DisplayName: Wheel Proj
+Projectiles: {
+	WheelProj.DisplayName: Wheel Proj
+	Laser.DisplayName: Laser
+	Spike.DisplayName: Spike
+}
+
+Buffs: {
+	Hurt: {
+		DisplayName: Hurt
+		Description: Mods.PuttingTheTInTerraria.Buffs.Hurt.Description
+	}
+}

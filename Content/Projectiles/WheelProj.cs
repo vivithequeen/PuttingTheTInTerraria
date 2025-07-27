@@ -8,15 +8,15 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace PuttingTheTInTerraria.Content.Items
+namespace PuttingTheTInTerraria.Content.Projectiles
 {
 	// Example Advanced Flail is a complete adaption of Ball O' Hurt projectile. The code has been rewritten a bit to make it easier to follow. Compare this code against the decompiled Terraria code for an example of adapting vanilla code. A few comments and extra code snippets show features from other vanilla flails as well.
 	// Example Advanced Flail shows a plethora of advanced AI and collision topics.
 	// See ExampleFlail for a simpler but less customizable flail projectile example.
 	public class WheelProj : ModProjectile
 	{
-		private const string ChainTexturePath = "PuttingTheTInTerraria/Content/Items/WheelChain"; // The folder path to the flail chain sprite
-		private const string ChainTextureExtraPath = "PuttingTheTInTerraria/Content/Items/WheelChain";  // This texture and related code is optional and used for a unique effect
+		private const string ChainTexturePath = "PuttingTheTInTerraria/Content/Projectiles/WheelChain"; // The folder path to the flail chain sprite
+		private const string ChainTextureExtraPath = "PuttingTheTInTerraria/Content/Projectiles/WheelChain";  // This texture and related code is optional and used for a unique effect
 
 		private static Asset<Texture2D> chainTexture;
 		private static Asset<Texture2D> chainTextureExtra; // This texture and related code is optional and used for a unique effect
@@ -56,8 +56,8 @@ namespace PuttingTheTInTerraria.Content.Items
 
 		public override void SetDefaults() {
 			Projectile.netImportant = true; // This ensures that the projectile is synced when other players join the world.
-			Projectile.width = 24; // The width of your projectile
-			Projectile.height = 24; // The height of your projectile
+			Projectile.width = 120; // The width of your projectile
+			Projectile.height = 120; // The height of your projectile
 			Projectile.friendly = true; // Deals damage to enemies
 			Projectile.penetrate = -1; // Infinite pierce
 			Projectile.DamageType = DamageClass.Melee; // Deals melee damage
@@ -82,20 +82,20 @@ namespace PuttingTheTInTerraria.Content.Items
 
 			Vector2 mountedCenter = player.MountedCenter;
 			bool shouldOwnerHitCheck = false;
-			int launchTimeLimit = 15;  // How much time the projectile can go before retracting (speed and shootTimer will set the flail's range)
-			float launchSpeed = 14f; // How fast the projectile can move
-			float maxLaunchLength = 800f; // How far the projectile's chain can stretch before being forced to retract when in launched state
-			float retractAcceleration = 3f; // How quickly the projectile will accelerate back towards the player while retracting
-			float maxRetractSpeed = 10f; // The max speed the projectile will have while retracting
-			float forcedRetractAcceleration = 6f; // How quickly the projectile will accelerate back towards the player while being forced to retract
-			float maxForcedRetractSpeed = 15f; // The max speed the projectile will have while being forced to retract
-			float unusedRetractAcceleration = 1f;
-			float unusedMaxRetractSpeed = 14f;
-			int unusedChainLength = 60;
-			int defaultHitCooldown = 10; // How often your flail hits when resting on the ground, or retracting
-			int spinHitCooldown = 20; // How often your flail hits when spinning
-			int movingHitCooldown = 10; // How often your flail hits when moving
-			int ricochetTimeLimit = launchTimeLimit + 5;
+			int launchTimeLimit = 50;  // How much time the projectile can go before retracting (speed and shootTimer will set the flail's range)
+			float launchSpeed = 50f; // How fast the projectile can move
+			float maxLaunchLength = 3000f; // How far the projectile's chain can stretch before being forced to retract when in launched state
+			float retractAcceleration = 50f; // How quickly the projectile will accelerate back towards the player while retracting
+			float maxRetractSpeed = 100f; // The max speed the projectile will have while retracting
+			float forcedRetractAcceleration = 50f; // How quickly the projectile will accelerate back towards the player while being forced to retract
+			float maxForcedRetractSpeed = 50f; // The max speed the projectile will have while being forced to retract
+			float unusedRetractAcceleration = 50f;
+			float unusedMaxRetractSpeed = 50f;
+			int unusedChainLength = 150;
+			int defaultHitCooldown = 2; // How often your flail hits when resting on the ground, or retracting
+			int spinHitCooldown = 3; // How often your flail hits when spinning
+			int movingHitCooldown = 2; // How often your flail hits when moving
+			int ricochetTimeLimit = launchTimeLimit;
 
 			// Scaling these speeds and accelerations by the players melee speed makes the weapon more responsive if the player boosts it or general weapon speed
 			float meleeSpeedMultiplier = player.GetTotalAttackSpeed(DamageClass.Melee);
@@ -112,6 +112,7 @@ namespace PuttingTheTInTerraria.Content.Items
 
 			switch (CurrentAIState) {
 				case AIState.Spinning: {
+					Projectile.tileCollide = false;
 						shouldOwnerHitCheck = true;
 						if (Projectile.owner == Main.myPlayer) {
 							Vector2 unitVectorTowardsMouse = mountedCenter.DirectionTo(Main.MouseWorld).SafeNormalize(Vector2.UnitX * player.direction);
@@ -132,16 +133,20 @@ namespace PuttingTheTInTerraria.Content.Items
 						// This line creates a unit vector that is constantly rotated around the player. 10f controls how fast the projectile visually spins around the player
 						Vector2 offsetFromPlayer = new Vector2(player.direction).RotatedBy((float)Math.PI * 10f * (SpinningStateTimer / 60f) * player.direction);
 
+						offsetFromPlayer *= 1.7f;
+						
+
 						offsetFromPlayer.Y *= 0.8f;
 						if (offsetFromPlayer.Y * player.gravDir > 0f) {
 							offsetFromPlayer.Y *= 0.5f;
 						}
-						Projectile.Center = mountedCenter + offsetFromPlayer * 30f + new Vector2(0, player.gfxOffY);
+						Projectile.Center = mountedCenter + offsetFromPlayer * 40f + new Vector2(0, player.gfxOffY);
 						Projectile.velocity = Vector2.Zero;
 						Projectile.localNPCHitCooldown = spinHitCooldown; // set the hit speed to the spinning hit speed
 						break;
 					}
 				case AIState.LaunchingForward: {
+					Projectile.tileCollide = false;
 						bool shouldSwitchToRetracting = StateTimer++ >= launchTimeLimit;
 						shouldSwitchToRetracting |= Projectile.Distance(mountedCenter) >= maxLaunchLength;
 						if (player.controlUseItem) // If the player clicks, transition to the Dropping state
@@ -190,7 +195,9 @@ namespace PuttingTheTInTerraria.Content.Items
 					}
 				// Projectile.ai[0] == 3; This case is actually unused, but maybe a Terraria update will add it back in, or maybe it is useless, so I left it here.
 				case AIState.UnusedState: {
-						if (!player.controlUseItem) {
+					Projectile.tileCollide = true;
+						if (!player.controlUseItem)
+						{
 							CurrentAIState = AIState.ForcedRetracting; // Move to super retracting mode if the player taps
 							StateTimer = 0f;
 							Projectile.netUpdate = true;
