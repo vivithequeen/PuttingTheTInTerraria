@@ -12,7 +12,7 @@ namespace PuttingTheTInTerraria.Content.Items
 			// DefaultToStaff handles setting various Item values that magic staff weapons use.
 			// Hover over DefaultToStaff in Visual Studio to read the documentation!
 			// Shoot a black bolt, also known as the projectile shot from the onyx blaster.
-			Item.DefaultToStaff(ProjectileID.GoldenShowerFriendly, 4, 1, 2);
+			Item.DefaultToStaff(ProjectileID.GoldenShowerFriendly, 20, 1, 2);
 			Item.width = 34;
 			Item.height = 40;
 			Item.UseSound = SoundID.Item43;
