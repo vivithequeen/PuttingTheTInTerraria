@@ -7,6 +7,9 @@ using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
+using PuttingTheTInTerraria.Content.Items.Consumables;
+using Terraria.GameContent.ItemDropRules;
+using System;
 
 namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 {
@@ -14,6 +17,8 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 	// These three class showcase usage of the WormHead, WormBody and WormTail classes from Worm.cs
 	internal class MassTHead : NPCs.WormHead
 	{
+		public int AttackTimer = 0;
+		Vector2 targetPosition;
 		public override int BodyType => ModContent.NPCType<MassTBody>();
 
 		public override int TailType => ModContent.NPCType<MassTTail>();
@@ -35,6 +40,7 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 			// These lines are only needed in the main body part.
 			NPC.boss = true;
 			NPC.npcSlots = 10f;
+			NPC.damage = 9;
 
 		}
 
@@ -74,59 +80,141 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 		{
 			if (Main.netMode != NetmodeID.MultiplayerClient)
 			{
-				if (attackCounter > 0)
+
+				if (AttackTimer == 1)
 				{
-					attackCounter--; // tick down the attack counter.
+					targetPosition = Main.player[NPC.target].Center;
 				}
-
-				Player target = Main.player[NPC.target];
-				// If the attack counter is 0, this NPC is less than 12.5 tiles away from its target, and has a path to the target unobstructed by blocks, summon a projectile.
-				if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
+				if (AttackTimer >= 2)
 				{
-					Vector2 direction = (target.Center - NPC.Center).SafeNormalize(Vector2.UnitX);
-					direction = direction.RotatedByRandom(MathHelper.ToRadians(10));
 
-					int projectile = Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, direction * 1, ProjectileID.ShadowBeamHostile, 5, 0, Main.myPlayer);
-					Main.projectile[projectile].timeLeft = 300;
-					attackCounter = 500;
-					NPC.netUpdate = true;
+					if (NPC.HasValidTarget && Main.netMode != NetmodeID.MultiplayerClient)
+					{
+
+						var source = NPC.GetSource_FromAI();
+						Vector2 position = NPC.Center;
+
+						Vector2 direction = targetPosition - position;
+						direction.Normalize();
+
+
+
+						float projSpeed = 10f;
+
+						int type = ProjectileID.RocketSkeleton;
+
+
+						int damage = NPC.damage;
+
+						Projectile.NewProjectile(source, position, direction * projSpeed, type, damage, 0f, Main.myPlayer);
+
+
+					}
+					AttackTimer = 0;
+
+				}
+				else
+				{
+					AttackTimer += 1;
 				}
 			}
+		}
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<MassTTresureBag>()));
 		}
 	}
 
 	internal class MassTBody : NPCs.WormBody
 	{
-		public override void SetStaticDefaults() {
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
+		public int AttackTimer = 0;
+		Vector2 targetPosition;
+		public override void SetStaticDefaults()
+		{
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+			{
 				Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
 			NPCID.Sets.RespawnEnemyID[NPC.type] = ModContent.NPCType<MassTHead>();
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults()
+		{
+			Random rnd = new Random();
+			AttackTimer = (int)(rnd.NextDouble() * 20);
 			NPC.CloneDefaults(NPCID.WyvernBody);
 			NPC.aiStyle = -1;
 			NPC.width = 120;
 			NPC.height = 192;
 			// Extra body parts should use the same Banner value as the main ModNPC.
-			Banner = ModContent.NPCType<MassTHead>();
+			NPC.damage = 8;
+		}
+		public override void AI()
+		{
+			if (Main.netMode != NetmodeID.MultiplayerClient)
+			{
+
+				if (AttackTimer == 230)
+				{
+					targetPosition = Main.player[NPC.target].Center;
+				}
+				if (AttackTimer >= 240)
+				{
+
+					if (NPC.HasValidTarget && Main.netMode != NetmodeID.MultiplayerClient)
+					{
+
+						var source = NPC.GetSource_FromAI();
+						Vector2 position = NPC.Center;
+
+						Vector2 direction = targetPosition - position;
+						direction.Normalize();
+
+
+
+						float projSpeed = 10f;
+
+						int type = ProjectileID.RocketSkeleton;
+
+
+						int damage = NPC.damage;
+
+						Projectile.NewProjectile(source, position, direction * projSpeed, type, damage, 0f, Main.myPlayer);
+
+
+					}
+					AttackTimer = 0;
+
+				}
+				else
+				{
+					AttackTimer += 1;
+				}
+			}
+		}
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<MassTTresureBag>()));
 		}
 
-		public override void Init() {
+		public override void Init()
+		{
 			MassTHead.CommonWormInit(this);
 		}
 	}
 
 	internal class MassTTail : NPCs.WormTail
 	{
-		public override void SetStaticDefaults() {
-	
+		public override void SetStaticDefaults()
+		{
+
 			NPCID.Sets.RespawnEnemyID[NPC.type] = ModContent.NPCType<MassTHead>();
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults()
+		{
+			NPC.damage = 9;
 			NPC.CloneDefaults(NPCID.WyvernTail);
 			NPC.aiStyle = -1;
 
@@ -134,7 +222,8 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 			NPC.height = 192;
 		}
 
-		public override void Init() {
+		public override void Init()
+		{
 			MassTHead.CommonWormInit(this);
 		}
 	}

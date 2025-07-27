@@ -15,6 +15,16 @@ Items: {
 		DisplayName: Wheel
 		Tooltip: ""
 	}
+
+	MassTSummonItem: {
+		Tooltip: In the dark reccess of the internet there is a speciman, the Public Transport Nerd. They are a unfortuantly not so uncommon abnormality.
+		DisplayName: Public Transport Nerd
+	}
+
+	MassTTresureBag: {
+		DisplayName: Tresure Bag (Massachusets Transit System)
+		Tooltip: ""
+	}
 }
 
 NPCs: {
