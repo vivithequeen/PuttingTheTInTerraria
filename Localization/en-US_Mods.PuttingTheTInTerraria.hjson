@@ -18,12 +18,12 @@ Items: {
 
 	Railgun: {
 		DisplayName: RAILgun
-		Tooltip: ""
+		Tooltip: Shoots damaging golden spikes
 	}
 
 	Fumes: {
 		DisplayName: Fumes
-		Tooltip: ""
+		Tooltip: polution! yay!
 	}
 
 	MassTSummonItem: {
@@ -33,7 +33,7 @@ Items: {
 
 	MassTTresureBag: {
 		DisplayName: Tresure Bag (Massachusets Transit System)
-		Tooltip: ""
+		Tooltip: It's delayed.
 	}
 }
 

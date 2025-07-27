@@ -1,4 +1,5 @@
 
+using System;
 using PuttingTheTInTerraria.Content.NPCs.Bosses;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
@@ -9,7 +10,11 @@ namespace PuttingTheTInTerraria.Content.Items.Consumables
 {
 	// Basic code for a boss treasure bag
 	public class MassTTresureBag : ModItem
+
 	{
+
+		Random rand = new Random();
+
 		public override void SetStaticDefaults() {
 			// This set is one that every boss bag should have.
 			// It will create a glowing effect around the item when dropped in the world.
@@ -33,11 +38,21 @@ namespace PuttingTheTInTerraria.Content.Items.Consumables
 			return true;
 		}
 
-		public override void ModifyItemLoot(ItemLoot itemLoot) {
+		public override void ModifyItemLoot(ItemLoot itemLoot)
+		{
+			int num = (int)(rand.NextDouble() * 4 ) - 1;
 			// We have to replicate the expert drops from MinionBossBody here
 
 			//itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<MinionBossMask>(), 7));
-			//itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ExampleItem>(), 1, 12, 16));
+			if (num == 1){
+				itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Railgun>(), 1, 1, 1));
+			}
+			else if (num == 2){
+				itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Wheel>(), 1, 1, 1));
+			}
+			else if (num == 3){
+				itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Fumes>(), 1, 1, 1));
+			}
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<MassTHead>()));
 		}
 	}
