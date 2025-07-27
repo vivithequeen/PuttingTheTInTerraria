@@ -25,11 +25,21 @@ Items: {
 		DisplayName: Fumes
 		Tooltip: ""
 	}
+
+	MassTSummonItem: {
+		Tooltip: In the dark reccess of the internet there is a speciman, the Public Transport Nerd. They are a unfortuantly not so uncommon abnormality.
+		DisplayName: Public Transport Nerd
+	}
+
+	MassTTresureBag: {
+		DisplayName: Tresure Bag (Massachusets Transit System)
+		Tooltip: ""
+	}
 }
 
 NPCs: {
 	MassTTail.DisplayName: Mass T Tail
-	MassTHead.DisplayName: Mass T Head
+	MassTHead.DisplayName: Massachusets Transit System
 	MassTBody.DisplayName: Mass T Body
 }
 

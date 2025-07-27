@@ -7,131 +7,223 @@ using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
+using PuttingTheTInTerraria.Content.Items.Consumables;
+using Terraria.GameContent.ItemDropRules;
+using System;
 
 namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 {
+	[AutoloadBossHead]
 	// These three class showcase usage of the WormHead, WormBody and WormTail classes from Worm.cs
 	internal class MassTHead : NPCs.WormHead
 	{
+		public int AttackTimer = 0;
+		Vector2 targetPosition;
 		public override int BodyType => ModContent.NPCType<MassTBody>();
 
 		public override int TailType => ModContent.NPCType<MassTTail>();
 
-		public override void SetStaticDefaults() {
+		public override void SetStaticDefaults()
+		{
 
-			
+
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults()
+		{
 			// Head is 10 defense, body 20, tail 30.
-			NPC.CloneDefaults(NPCID.DiggerHead);
+			NPC.CloneDefaults(NPCID.WyvernHead);
 			NPC.aiStyle = -1;
-
-			Banner = Type;
+			NPC.lifeMax = 700000;
+			NPC.width = 120;
+			NPC.height = 192;
 			// These lines are only needed in the main body part.
-	
-			ItemID.Sets.KillsToBanner[BannerItem] = 25; // Custom kill count required for banner drop and bestiary unlock. Omit this line for the default 50 kill count.
+			NPC.boss = true;
+			NPC.npcSlots = 10f;
+			NPC.damage = 9;
+
 		}
 
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
-			bestiaryEntry.Info.AddRange([
-				// Sets the spawning conditions of this NPC that is listed in the bestiary.
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
 
-				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("Mods.ExampleMod.Bestiary.ExampleWormHead")
-			]);
-		}
 
-		public override void Init() {
+		public override void Init()
+		{
 			// Set the segment variance
 			// If you want the segment length to be constant, set these two properties to the same value
-			MinSegmentLength = 6;
-			MaxSegmentLength = 12;
+			MinSegmentLength = 20;
+			MaxSegmentLength = 25;
 
 			CommonWormInit(this);
 		}
 
 		// This method is invoked from ExampleWormHead, ExampleWormBody and ExampleWormTail
-		internal static void CommonWormInit(NPCs.Worm worm) {
+		internal static void CommonWormInit(NPCs.Worm worm)
+		{
 			// These two properties handle the movement of the worm
-			worm.MoveSpeed = 5.5f;
-			worm.Acceleration = 0.045f;
+			worm.MoveSpeed = 45f;
+			worm.Acceleration = 4.045f;
+
 		}
 
 		private int attackCounter;
-		public override void SendExtraAI(BinaryWriter writer) {
+		public override void SendExtraAI(BinaryWriter writer)
+		{
 			writer.Write(attackCounter);
 		}
 
-		public override void ReceiveExtraAI(BinaryReader reader) {
+		public override void ReceiveExtraAI(BinaryReader reader)
+		{
 			attackCounter = reader.ReadInt32();
 		}
 
-		public override void AI() {
-			if (Main.netMode != NetmodeID.MultiplayerClient) {
-				if (attackCounter > 0) {
-					attackCounter--; // tick down the attack counter.
+		public override void AI()
+		{
+			if (Main.netMode != NetmodeID.MultiplayerClient)
+			{
+
+				if (AttackTimer == 1)
+				{
+					targetPosition = Main.player[NPC.target].Center;
 				}
+				if (AttackTimer >= 2)
+				{
 
-				Player target = Main.player[NPC.target];
-				// If the attack counter is 0, this NPC is less than 12.5 tiles away from its target, and has a path to the target unobstructed by blocks, summon a projectile.
-				if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1)) {
-					Vector2 direction = (target.Center - NPC.Center).SafeNormalize(Vector2.UnitX);
-					direction = direction.RotatedByRandom(MathHelper.ToRadians(10));
+					if (NPC.HasValidTarget && Main.netMode != NetmodeID.MultiplayerClient)
+					{
 
-					int projectile = Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, direction * 1, ProjectileID.ShadowBeamHostile, 5, 0, Main.myPlayer);
-					Main.projectile[projectile].timeLeft = 300;
-					attackCounter = 500;
-					NPC.netUpdate = true;
+						var source = NPC.GetSource_FromAI();
+						Vector2 position = NPC.Center;
+
+						Vector2 direction = targetPosition - position;
+						direction.Normalize();
+
+
+
+						float projSpeed = 10f;
+
+						int type = ProjectileID.RocketSkeleton;
+
+
+						int damage = NPC.damage;
+
+						Projectile.NewProjectile(source, position, direction * projSpeed, type, damage, 0f, Main.myPlayer);
+
+
+					}
+					AttackTimer = 0;
+
+				}
+				else
+				{
+					AttackTimer += 1;
 				}
 			}
+		}
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<MassTTresureBag>()));
 		}
 	}
 
 	internal class MassTBody : NPCs.WormBody
 	{
-		public override void SetStaticDefaults() {
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
+		public int AttackTimer = 0;
+		Vector2 targetPosition;
+		public override void SetStaticDefaults()
+		{
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+			{
 				Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
 			NPCID.Sets.RespawnEnemyID[NPC.type] = ModContent.NPCType<MassTHead>();
 		}
 
-		public override void SetDefaults() {
-			NPC.CloneDefaults(NPCID.DiggerBody);
+		public override void SetDefaults()
+		{
+			Random rnd = new Random();
+			AttackTimer = (int)(rnd.NextDouble() * 20);
+			NPC.CloneDefaults(NPCID.WyvernBody);
 			NPC.aiStyle = -1;
-
+			NPC.width = 120;
+			NPC.height = 192;
 			// Extra body parts should use the same Banner value as the main ModNPC.
-			Banner = ModContent.NPCType<MassTHead>();
+			NPC.damage = 8;
+		}
+		public override void AI()
+		{
+			if (Main.netMode != NetmodeID.MultiplayerClient)
+			{
+
+				if (AttackTimer == 230)
+				{
+					targetPosition = Main.player[NPC.target].Center;
+				}
+				if (AttackTimer >= 240)
+				{
+
+					if (NPC.HasValidTarget && Main.netMode != NetmodeID.MultiplayerClient)
+					{
+
+						var source = NPC.GetSource_FromAI();
+						Vector2 position = NPC.Center;
+
+						Vector2 direction = targetPosition - position;
+						direction.Normalize();
+
+
+
+						float projSpeed = 10f;
+
+						int type = ProjectileID.RocketSkeleton;
+
+
+						int damage = NPC.damage;
+
+						Projectile.NewProjectile(source, position, direction * projSpeed, type, damage, 0f, Main.myPlayer);
+
+
+					}
+					AttackTimer = 0;
+
+				}
+				else
+				{
+					AttackTimer += 1;
+				}
+			}
+		}
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<MassTTresureBag>()));
 		}
 
-		public override void Init() {
+		public override void Init()
+		{
 			MassTHead.CommonWormInit(this);
 		}
 	}
 
 	internal class MassTTail : NPCs.WormTail
 	{
-		public override void SetStaticDefaults() {
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
-			};
-			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+		public override void SetStaticDefaults()
+		{
+
 			NPCID.Sets.RespawnEnemyID[NPC.type] = ModContent.NPCType<MassTHead>();
 		}
 
-		public override void SetDefaults() {
-			NPC.CloneDefaults(NPCID.DiggerTail);
+		public override void SetDefaults()
+		{
+			NPC.damage = 9;
+			NPC.CloneDefaults(NPCID.WyvernTail);
 			NPC.aiStyle = -1;
 
-
+			NPC.width = 120;
+			NPC.height = 192;
 		}
 
-		public override void Init() {
+		public override void Init()
+		{
 			MassTHead.CommonWormInit(this);
 		}
 	}
