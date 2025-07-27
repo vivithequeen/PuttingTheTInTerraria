@@ -35,6 +35,16 @@ Items: {
 		DisplayName: Tresure Bag (Massachusets Transit System)
 		Tooltip: It's delayed.
 	}
+
+	Shuttle: {
+		DisplayName: Shuttle
+		Tooltip: ""
+	}
+
+	ExampleSimpleMinionItem: {
+		DisplayName: Shuttle Bus
+		Tooltip: Better than the train
+	}
 }
 
 NPCs: {
@@ -47,11 +57,17 @@ Projectiles: {
 	WheelProj.DisplayName: Wheel Proj
 	Laser.DisplayName: Laser
 	Spike.DisplayName: Spike
+	ExampleSimpleMinion.DisplayName: Shuttle
 }
 
 Buffs: {
 	Hurt: {
 		DisplayName: Hurt
 		Description: Mods.PuttingTheTInTerraria.Buffs.Hurt.Description
+	}
+
+	ExampleSimpleMinionBuff: {
+		DisplayName: Example Simple Minion Buff
+		Description: Mods.PuttingTheTInTerraria.Buffs.ExampleSimpleMinionBuff.Description
 	}
 }

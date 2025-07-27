@@ -40,19 +40,13 @@ namespace PuttingTheTInTerraria.Content.Items.Consumables
 
 		public override void ModifyItemLoot(ItemLoot itemLoot)
 		{
-			int num = (int)(rand.NextDouble() * 4 ) - 1;
 			// We have to replicate the expert drops from MinionBossBody here
 
 			//itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<MinionBossMask>(), 7));
-			if (num == 1){
-				itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Railgun>(), 1, 1, 1));
-			}
-			else if (num == 2){
-				itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Wheel>(), 1, 1, 1));
-			}
-			else if (num == 3){
-				itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Fumes>(), 1, 1, 1));
-			}
+			itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Projectiles.ExampleSimpleMinionItem>(), 1, 0, 1));
+			itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Railgun>(), 1, 0, 1));
+			itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Wheel>(), 1, 0, 1));
+			itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Fumes>(), 1, 0, 1));
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<MassTHead>()));
 		}
 	}
