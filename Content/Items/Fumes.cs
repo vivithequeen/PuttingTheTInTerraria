@@ -1,3 +1,4 @@
+using System.Drawing;
 using Terraria;
 using Terraria.Enums;
 using Terraria.ID;
@@ -11,16 +12,17 @@ namespace PuttingTheTInTerraria.Content.Items
 			// DefaultToStaff handles setting various Item values that magic staff weapons use.
 			// Hover over DefaultToStaff in Visual Studio to read the documentation!
 			// Shoot a black bolt, also known as the projectile shot from the onyx blaster.
-			Item.DefaultToStaff(ProjectileID.TerraBeam, 7, 20, 11);
+			Item.DefaultToStaff(ProjectileID.GoldenShowerFriendly, 20, 1, 2);
 			Item.width = 34;
 			Item.height = 40;
 			Item.UseSound = SoundID.Item43;
+            //Projectile.Color = Microsoft.Xna.Framework.Color.Black;
 
 			// A special method that sets the damage, knockback, and bonus critical strike chance.
-			// This weapon has a crit of 32% which is added to the players default crit chance of 4%
-			Item.SetWeaponValues(1000, 6, 32);
+            // This weapon has a crit of 32% which is added to the players default crit chance of 4%
+            Item.SetWeaponValues(500, 6, 32);
 
-			Item.SetShopValues(ItemRarityColor.LightRed4, 10000);
+			Item.SetShopValues(ItemRarityColor.StrongRed10, 10000);
 		}
         
 		public override void ModifyManaCost(Player player, ref float reduce, ref float mult)
