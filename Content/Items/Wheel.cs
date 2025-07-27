@@ -10,7 +10,7 @@ namespace PuttingTheTInTerraria.Content.Items
 		public override void SetStaticDefaults() {
 			// This line will make the damage shown in the tooltip twice the actual Item.damage. This multiplier is used to adjust for the dynamic damage capabilities of the projectile.
 			// When thrown directly at enemies, the flail projectile will deal double Item.damage, matching the tooltip, but deals normal damage in other modes.
-			ItemID.Sets.ToolTipDamageMultiplier[Type] = 100f;
+			ItemID.Sets.ToolTipDamageMultiplier[Type] = 1f;
 		}
 
 		public override void SetDefaults() {

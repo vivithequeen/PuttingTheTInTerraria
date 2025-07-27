@@ -47,6 +47,7 @@ namespace PuttingTheTInTerraria.Content.Items.Consumables
 			itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Railgun>(), 1, 0, 1));
 			itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Wheel>(), 1, 0, 1));
 			itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Fumes>(), 1, 0, 1));
+			itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.ExampleWhip>(), 1, 0, 1));
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<MassTHead>()));
 		}
 	}
