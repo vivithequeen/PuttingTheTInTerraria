@@ -21,8 +21,8 @@ namespace PuttingTheTInTerraria.Content.Projectiles
 			Projectile.DefaultToWhip();
 
 			// use these to change from the vanilla defaults
-			// Projectile.WhipSettings.Segments = 20;
-			// Projectile.WhipSettings.RangeMultiplier = 1f;
+			Projectile.WhipSettings.Segments = 60;
+			Projectile.WhipSettings.RangeMultiplier = 1f;
 		}
 
 		private float Timer {

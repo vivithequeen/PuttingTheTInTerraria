@@ -57,29 +57,29 @@ Projectiles: {
 	WheelProj.DisplayName: Wheel Proj
 	Laser.DisplayName: Laser
 	Spike.DisplayName: Spike
-	ExampleSimpleMinion.DisplayName: Example Simple Minion
+	ExampleSimpleMinion.DisplayName: Shuttle
 	MassTSpike.DisplayName: Mass T Spike
-	ExampleWhipProjectile.DisplayName: Example Whip Projectile
+	ExampleWhipProjectile.DisplayName: Coupler
 }
 
 Buffs: {
 	Hurt: {
 		DisplayName: Hurt
-		Description: Mods.PuttingTheTInTerraria.Buffs.Hurt.Description
+		Description: Oww
 	}
 
 	ExampleSimpleMinionBuff: {
-		DisplayName: Example Simple Minion Buff
-		Description: Mods.PuttingTheTInTerraria.Buffs.ExampleSimpleMinionBuff.Description
+		DisplayName: Shuttle Bus
+		Description: Faster than the T
 	}
 
 	ExampleWhipAdvancedDebuff: {
-		Description: Mods.PuttingTheTInTerraria.Buffs.ExampleWhipAdvancedDebuff.Description
-		DisplayName: Example Whip Advanced Debuff
+		Description: oww
+		DisplayName: Whip
 	}
 
 	ExampleWhipDebuff: {
-		DisplayName: Example Whip Debuff
-		Description: Mods.PuttingTheTInTerraria.Buffs.ExampleWhipDebuff.Description
+		DisplayName: whip
+		Description: oww
 	}
 }
