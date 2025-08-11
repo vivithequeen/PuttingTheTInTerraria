@@ -3,10 +3,10 @@ This mod puts the Massachusetts Bay Transportation Authority (MBTA) in Terraria.
 Features:
 
 One new post Moon lord boss, the Commuter Rail
-A new whip, the Coupler
-A new flail, the Train Wheel
-A new spellbook, Fumes
-A new Rifle, the RAILgun
-A new Summon, the Shuttle Bus
-Includes a summon item and a loot bag
-Work in all modes and difficulties.
+\nA new whip, the Coupler
+\nA new flail, the Train Wheel
+\nA new spellbook, Fumes
+\nA new Rifle, the RAILgun
+\nA new Summon, the Shuttle Bus
+\nIncludes a summon item and a loot bag
+\nWork in all modes and difficulties.
