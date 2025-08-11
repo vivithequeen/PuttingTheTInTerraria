@@ -4,7 +4,7 @@ This mod puts the Massachusetts Bay Transportation Authority (MBTA) in Terraria.
 
 Features:
 
-One new post Moon lord boss, the Commuter Rail
+- One new post Moon lord boss, the Commuter Rail
 
 - A new whip, the Coupler
 
