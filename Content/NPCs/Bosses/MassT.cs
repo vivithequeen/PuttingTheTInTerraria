@@ -41,7 +41,7 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 			// These lines are only needed in the main body part.
 			NPC.boss = true;
 			NPC.npcSlots = 10f;
-			NPC.damage = 10;
+			NPC.damage = 30;
 
 		}
 
@@ -107,7 +107,7 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 
 						int damage = NPC.damage;
 
-						Projectile.NewProjectile(source, position, direction * projSpeed, type, damage, 0f, Main.myPlayer);
+						Projectile.NewProjectile(source, position, direction * projSpeed, type, 200, 0f, Main.myPlayer);
 
 
 					}
@@ -149,7 +149,7 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 			NPC.width = 120;
 			NPC.height = 192;
 			// Extra body parts should use the same Banner value as the main ModNPC.
-			NPC.damage = 10;
+			NPC.damage = 25;
 		}
 		public override void AI()
 		{
@@ -181,7 +181,7 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 
 						int damage = NPC.damage;
 
-						Projectile.NewProjectile(source, position, direction * projSpeed, type, damage, 0f, Main.myPlayer);
+						Projectile.NewProjectile(source, position, direction * projSpeed, type, 200, 0f, Main.myPlayer);
 
 
 					}
@@ -215,7 +215,7 @@ namespace PuttingTheTInTerraria.Content.NPCs.Bosses
 
 		public override void SetDefaults()
 		{
-			NPC.damage = 9;
+			NPC.damage = 20;
 			NPC.CloneDefaults(NPCID.WyvernTail);
 			NPC.aiStyle = -1;
 
