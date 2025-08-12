@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/violet/.local/share/Terraria/tModLoader/ModSources/PuttingTheTInTerraria/PuttingTheTInTerraria.csproj": {}
+    "c:\\Users\\zachn\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\PuttingTheTInTerraria\\PuttingTheTInTerraria.csproj": {}
   },
   "projects": {
-    "/home/violet/.local/share/Terraria/tModLoader/ModSources/PuttingTheTInTerraria/PuttingTheTInTerraria.csproj": {
+    "c:\\Users\\zachn\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\PuttingTheTInTerraria\\PuttingTheTInTerraria.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/violet/.local/share/Terraria/tModLoader/ModSources/PuttingTheTInTerraria/PuttingTheTInTerraria.csproj",
+        "projectUniqueName": "c:\\Users\\zachn\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\PuttingTheTInTerraria\\PuttingTheTInTerraria.csproj",
         "projectName": "PuttingTheTInTerraria",
-        "projectPath": "/home/violet/.local/share/Terraria/tModLoader/ModSources/PuttingTheTInTerraria/PuttingTheTInTerraria.csproj",
-        "packagesPath": "/home/violet/.nuget/packages/",
-        "outputPath": "/home/violet/.local/share/Terraria/tModLoader/ModSources/PuttingTheTInTerraria/obj/",
+        "projectPath": "c:\\Users\\zachn\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\PuttingTheTInTerraria\\PuttingTheTInTerraria.csproj",
+        "packagesPath": "C:\\Users\\zachn\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\zachn\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\PuttingTheTInTerraria\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/violet/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\zachn\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -37,8 +37,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -65,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.412/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
